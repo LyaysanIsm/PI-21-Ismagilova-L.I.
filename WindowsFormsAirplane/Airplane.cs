@@ -3,26 +3,8 @@
 
 namespace WindowsFormsAirplane
 {
-    public class Airplane
+    public class Airplane : Vehicle
     {
-        /// <summary>         
-        /// Левая координата отрисовки самолета       
-        /// </summary>         
-        private float _startPosX;
-
-        /// <summary>         
-        /// Правая координата отрисовки самолета        
-        /// </summary>  
-        private float _startPosY;
-
-        /// <summary>         
-        /// Ширина окна отрисовки         
-        /// </summary> 
-        private int _pictureWidth;
-
-        //Высота окна отрисовки       
-        private int _pictureHeight;
-
         /// <summary>         
         /// Ширина отрисовки самолета       
         /// </summary> 
@@ -33,80 +15,27 @@ namespace WindowsFormsAirplane
         /// </summary>         
         private const int planeHeight = 50;
 
-        /// <summary>         
-        /// /// Максимальная скорость        
-        /// /// </summary>         
-        public int MaxSpeed { private set; get; }
-
-        /// <summary>         
-        /// Вес самолета        
-        /// </summary>         
-        public float Weight { private set; get; }
-
-        /// <summary> 
-        /// Основной цвет кузова         
-        /// </summary>         
-        public Color MainColor { private set; get; }
-
-        /// <summary> 
-        /// Дополнительный цвет          
-        /// </summary> 
-        public Color DopColor { private set; get; }
-
-        /// <summary> 
-        /// Киль        
-        /// </summary> 
-        public bool Keel { private set; get; }
-
-        /// <summary> 
-        /// Пули        
-        /// </summary> 
-        public bool Bullets { private set; get; }
-
-        /// <summary> 
-        /// Кабина        
-        /// </summary> 
         public bool Cabin { private set; get; }
+
+        public bool Keel { private set; get; }
 
         /// <summary>         
         /// Конструктор        
         /// </summary>         
         /// <param name="maxSpeed">Максимальная скорость</param>         
         /// <param name="weight">Вес самолета</param>         
-        /// <param name="mainColor">Основной цвет кузова</param>        
+        /// <param name="mainColor">Основной цвет кузова</param>    
 
-        public Airplane(int maxSpeed, float weight, Color mainColor, Color dopColor, bool keel, bool bullets, bool cabin)
+        public Airplane(int maxSpeed, float weight, Color mainColor, bool cabin, bool keel)
         {
             MaxSpeed = maxSpeed;
             Weight = weight;
             MainColor = mainColor;
-            DopColor = dopColor;
-            Keel = keel;
-            Bullets = bullets;
             Cabin = cabin;
+            Keel = keel;
         }
 
-        /// <summary>        
-        /// Установка позиции самолета        
-        /// </summary>         
-        /// <param name="x">Координата X</param>         
-        /// <param name="y">Координата Y</param>         
-        /// <param name="width">Ширина картинки</param>         
-        /// <param name="height">Высота картинки</param>        
-        public void SetPosition(int x, int y, int width, int height)
-        {
-            _startPosX = x;
-            _startPosY = y;
-            _pictureWidth = width;
-            _pictureHeight = height;
-        }
-
-        /// <summary>         
-        /// Изменение направления пермещения         
-        /// </summary>         
-        /// <param name="direction">Направление</param>
-
-        public void MoveTransport(Direction direction)
+        public override void MoveTransport(Direction direction)
         {
             float step = MaxSpeed * 100 / Weight;
             switch (direction)
@@ -127,7 +56,7 @@ namespace WindowsFormsAirplane
                     break;
                 //вверх                 
                 case Direction.Up:
-                    if (_startPosY - step > 3)
+                    if (_startPosY - step > 4)
                     {
 
                         _startPosY -= step;
@@ -135,19 +64,14 @@ namespace WindowsFormsAirplane
                     break;
                 //вниз                
                 case Direction.Down:
-                    if (_startPosY + step < _pictureHeight - planeHeight - 100)
+                    if (_startPosY + step < _pictureHeight - planeHeight - 105)
                     {
                         _startPosY += step;
                     }
                     break;
             }
         }
-
-        /// <summary>         
-        /// Отрисовка самолета      
-        /// </summary>         
-        /// <param name="g"></param> 
-        public void DrawAirplane(Graphics g)
+        public override void DrawAirplane(Graphics g)
         {
 
             Pen pen = new Pen(Color.Black);
@@ -163,28 +87,12 @@ namespace WindowsFormsAirplane
             g.FillEllipse(sec, _startPosX + 80, _startPosY - 6, 40, 160);
             g.DrawEllipse(pen, _startPosX + 80, _startPosY - 6, 40, 160);
 
-            Brush bul = new SolidBrush(DopColor);
-
-            if (Bullets)
-            {
-                g.FillEllipse(bul, _startPosX + 48, _startPosY + 40, 5, 25);
-                g.FillEllipse(bul, _startPosX + 59, _startPosY + 35, 5, 25);
-                g.FillEllipse(bul, _startPosX + 70, _startPosY + 32, 5, 25);
-
-                g.FillEllipse(bul, _startPosX + 145, _startPosY + 40, 5, 25);
-                g.FillEllipse(bul, _startPosX + 134, _startPosY + 35, 5, 25);
-                g.FillEllipse(bul, _startPosX + 122, _startPosY + 32, 5, 25);
-
-            }
-
             if (Cabin)
             {
                 Brush win = new SolidBrush(Color.Yellow);
                 g.FillRectangle(win, _startPosX + 87, _startPosY + 26, 25, 15);
                 g.DrawRectangle(pen, _startPosX + 87, _startPosY + 26, 25, 15);
             }
-
-
             if (Keel)
             {
                 Brush kl = new SolidBrush(Color.Black);

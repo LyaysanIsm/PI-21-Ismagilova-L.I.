@@ -6,7 +6,7 @@ namespace WindowsFormsAirplane
 {
     public partial class FormAirplane : Form
     {
-        private Airplane fighter;
+        private ITransport fighter;
 
         /// <summary>
         /// Конструктор
@@ -36,11 +36,17 @@ namespace WindowsFormsAirplane
         private void buttonCreate_Click(object sender, EventArgs e)
         {
             Random rnd = new Random();
-            fighter = new Airplane(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Orange, Color.Brown, true, true, true);
+            fighter = new Fighter(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Orange, Color.Brown, true, true, true, true);
             fighter.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAirplane.Width, pictureBoxAirplane.Height);
             Draw();
         }
-
+        private void buttonF_Click(object sender, EventArgs e)
+        {
+            Random rnd = new Random();
+            fighter = new Airplane(rnd.Next(100, 300), rnd.Next(1000, 2000), Color.Blue, true, true);
+            fighter.SetPosition(rnd.Next(10, 100), rnd.Next(10, 100), pictureBoxAirplane.Width, pictureBoxAirplane.Height);
+            Draw();
+        }
         /// <summary>        
         /// Обработка нажатия кнопок управления        
         /// </summary>         
@@ -76,6 +82,6 @@ namespace WindowsFormsAirplane
         private void FormAirplane_Load(object sender, EventArgs e)
         {
 
-        }
+        }        
     }
 }
