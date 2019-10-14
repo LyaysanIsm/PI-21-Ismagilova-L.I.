@@ -77,28 +77,28 @@ namespace WindowsFormsAirplane
             Pen pen = new Pen(Color.Black);
 
             Brush fir = new SolidBrush(MainColor);
-            g.FillEllipse(fir, _startPosX + 28, _startPosY + 40, 140, 30);
-            g.DrawEllipse(pen, _startPosX + 28, _startPosY + 40, 140, 30);
+            g.FillEllipse(fir, _startPosX + 28 / 3, _startPosY + 40 / 3, 140 / 3, 30 / 3);
+            g.DrawEllipse(pen, _startPosX + 28 / 3, _startPosY + 40 / 3, 140 / 3, 30 / 3);
 
-            g.FillEllipse(fir, _startPosX + 60, _startPosY + 130, 80, 15);
-            g.DrawEllipse(pen, _startPosX + 60, _startPosY + 130, 80, 15);
+            g.FillEllipse(fir, _startPosX + 60 / 3, _startPosY + 130 / 3, 80 / 3, 15 / 3);
+            g.DrawEllipse(pen, _startPosX + 60 / 3, _startPosY + 130 / 3, 80 / 3, 15 / 3);
 
             Brush sec = new SolidBrush(MainColor);
-            g.FillEllipse(sec, _startPosX + 80, _startPosY - 6, 40, 160);
-            g.DrawEllipse(pen, _startPosX + 80, _startPosY - 6, 40, 160);
+            g.FillEllipse(sec, _startPosX + 80 / 3, _startPosY - 6 / 3, 40 / 3, 160 / 3);
+            g.DrawEllipse(pen, _startPosX + 80 / 3, _startPosY - 6 / 3, 40 / 3, 160 / 3);
 
             if (Cabin)
             {
                 Brush win = new SolidBrush(Color.Yellow);
-                g.FillRectangle(win, _startPosX + 87, _startPosY + 26, 25, 15);
-                g.DrawRectangle(pen, _startPosX + 87, _startPosY + 26, 25, 15);
+                g.FillRectangle(win, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
+                g.DrawRectangle(pen, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
             }
             if (Keel)
             {
                 Brush kl = new SolidBrush(Color.Black);
 
-                g.FillEllipse(kl, _startPosX + 98, _startPosY + 120, 5, 30);
-                g.DrawEllipse(pen, _startPosX + 98, _startPosY + 120, 5, 30);
+                g.FillEllipse(kl, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
+                g.DrawEllipse(pen, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
             }
 
         }
