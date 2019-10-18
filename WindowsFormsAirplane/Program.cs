@@ -8,6 +8,7 @@ namespace WindowsFormsAirplane
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
+        /// 333
         [STAThread]
         static void Main()
         {
