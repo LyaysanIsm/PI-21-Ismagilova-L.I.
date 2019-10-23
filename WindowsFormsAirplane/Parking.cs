@@ -60,8 +60,7 @@ namespace WindowsFormsAirplane
         /// Логика действия: на парковку добавляется самолет    
         /// </summary>         /// <param name="p">Парковка</param>    
         /// <param name="car">Добавляемый автомобиль</param>   
-        /// <returns></returns>     
-
+        /// <returns></returns>    
         public static int operator +(Parking<T> p, T plane)
         {
             if (p._places.Count == p._maxCount)
@@ -112,9 +111,7 @@ namespace WindowsFormsAirplane
         /// <summary>  
         /// Метод отрисовки парковки 
         /// </summary> 
-
         /// <param name="g"></param>        
-
         public void Draw(Graphics g)
         {
             DrawMarking(g);
@@ -128,7 +125,6 @@ namespace WindowsFormsAirplane
         /// <summary>     
         /// Метод отрисовки разметки парковочных мест     
         /// </summary>       
-
         /// <param name="g"></param>       
         private void DrawMarking(Graphics g)
         {

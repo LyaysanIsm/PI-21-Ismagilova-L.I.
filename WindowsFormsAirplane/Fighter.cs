@@ -32,8 +32,6 @@ namespace WindowsFormsAirplane
         /// <param name="maxSpeed">Максимальная скорость</param>         
         /// <param name="weight">Вес самолета</param>         
         /// <param name="mainColor">Основной цвет кузова</param> 
-
-
         public Fighter(int maxSpeed, float weight, Color mainColor, Color dopColor, bool keel, bool bullets, bool cabin, bool bombs) :
 
          base(maxSpeed, weight, mainColor, cabin, keel)
@@ -86,7 +84,6 @@ namespace WindowsFormsAirplane
                 g.DrawRectangle(pen, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
 
             }
-
 
             if (Keel)
             {
