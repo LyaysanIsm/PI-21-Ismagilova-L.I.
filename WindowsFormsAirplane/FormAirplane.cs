@@ -68,14 +68,5 @@ namespace WindowsFormsAirplane
             Draw();
         }
 
-        private void pictureBoxAirplane_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void FormAirplane_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }
