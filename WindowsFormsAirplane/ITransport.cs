@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 
-
 namespace WindowsFormsAirplane
 {
     public interface ITransport

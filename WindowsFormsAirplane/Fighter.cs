@@ -19,6 +19,9 @@ namespace WindowsFormsAirplane
         /// </summary> 
         public bool Bullets { private set; get; }
 
+        /// <summary> 
+        /// Бомбы       
+        /// </summary>
         public bool Bombs { private set; get; }
 
         /// <summary> 
@@ -39,7 +42,6 @@ namespace WindowsFormsAirplane
          base(maxSpeed, weight, mainColor, cabin, keel)
 
         {
-
             DopColor = dopColor;
             Keel = keel;
             Bullets = bullets;
