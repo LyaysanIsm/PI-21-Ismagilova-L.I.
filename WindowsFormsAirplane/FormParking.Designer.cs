@@ -39,6 +39,8 @@ namespace WindowsFormsAirplane
             this.headingplace = new System.Windows.Forms.Label();
             this.maskedTextBox = new System.Windows.Forms.MaskedTextBox();
             this.heading = new System.Windows.Forms.Label();
+            this.listBoxLevels = new System.Windows.Forms.ListBox();
+            this.levels = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakePlane)).BeginInit();
@@ -54,7 +56,7 @@ namespace WindowsFormsAirplane
             // 
             // button_Airplane
             // 
-            this.button_Airplane.Location = new System.Drawing.Point(696, 12);
+            this.button_Airplane.Location = new System.Drawing.Point(696, 83);
             this.button_Airplane.Name = "button_Airplane";
             this.button_Airplane.Size = new System.Drawing.Size(92, 53);
             this.button_Airplane.TabIndex = 1;
@@ -64,7 +66,7 @@ namespace WindowsFormsAirplane
             // 
             // button_Fighter
             // 
-            this.button_Fighter.Location = new System.Drawing.Point(696, 71);
+            this.button_Fighter.Location = new System.Drawing.Point(696, 154);
             this.button_Fighter.Name = "button_Fighter";
             this.button_Fighter.Size = new System.Drawing.Size(92, 53);
             this.button_Fighter.TabIndex = 2;
@@ -128,11 +130,30 @@ namespace WindowsFormsAirplane
             this.heading.TabIndex = 0;
             this.heading.Text = "Забрать самолет";
             // 
+            // listBoxLevels
+            // 
+            this.listBoxLevels.FormattingEnabled = true;
+            this.listBoxLevels.Location = new System.Drawing.Point(699, 25);
+            this.listBoxLevels.Name = "listBoxLevels";
+            this.listBoxLevels.Size = new System.Drawing.Size(86, 43);
+            this.listBoxLevels.TabIndex = 4;
+            // 
+            // levels
+            // 
+            this.levels.AutoSize = true;
+            this.levels.Location = new System.Drawing.Point(721, 9);
+            this.levels.Name = "levels";
+            this.levels.Size = new System.Drawing.Size(45, 13);
+            this.levels.TabIndex = 5;
+            this.levels.Text = "Уровни";
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.levels);
+            this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.groupBox);
             this.Controls.Add(this.button_Fighter);
             this.Controls.Add(this.button_Airplane);
@@ -144,6 +165,7 @@ namespace WindowsFormsAirplane
             this.groupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakePlane)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -158,5 +180,7 @@ namespace WindowsFormsAirplane
         private System.Windows.Forms.Button buttonTakeAirplane;
         private System.Windows.Forms.Label headingplace;
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
+        private System.Windows.Forms.ListBox listBoxLevels;
+        private System.Windows.Forms.Label levels;
     }
 }
