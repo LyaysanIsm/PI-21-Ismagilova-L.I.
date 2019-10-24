@@ -15,7 +15,6 @@ namespace WindowsFormsAirplane
         /// </summary>        
         private Dictionary<int, T> _places;
 
-
         /// <summary>        
         /// Максимальное количество мест на парковке      
         /// </summary>      
@@ -58,8 +57,9 @@ namespace WindowsFormsAirplane
         /// <summary>   
         /// Перегрузка оператора сложения   
         /// Логика действия: на парковку добавляется самолет    
-        /// </summary>         /// <param name="p">Парковка</param>    
-        /// <param name="car">Добавляемый автомобиль</param>   
+        /// </summary>        
+        /// <param name="p">Парковка</param>    
+        /// <param name="plane">Добавляемый самолет</param>   
         /// <returns></returns>    
         public static int operator +(Parking<T> p, T plane)
         {
@@ -82,7 +82,7 @@ namespace WindowsFormsAirplane
 
         /// <summary>   
         /// Перегрузка оператора вычитания 
-        /// Логика действия: с парковки забираем автомобиль    
+        /// Логика действия: с парковки забираем самолет    
         /// </summary>      
         /// <param name="p">Парковка</param>     
         /// <param name="index">Индекс места, с которого пытаемся извлечь объект</param>     
