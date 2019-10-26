@@ -116,8 +116,8 @@
             this.Controls.Add(this.buttonCreate);
             this.Controls.Add(this.pictureBoxAirplane);
             this.Name = "FormAirplane";
+            this.Text = "Самолет";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Самолет";           
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirplane)).EndInit();
             this.ResumeLayout(false);
 
