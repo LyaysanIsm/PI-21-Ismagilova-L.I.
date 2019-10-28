@@ -20,5 +20,11 @@ namespace WindowsFormsAirplane
         void MoveTransport(Direction direction);
 
         void DrawAirplane(Graphics g);
+
+        /// <summary> 
+        /// Смена основного цвета автомобиля 
+        /// </summary>
+        /// <param name="color"></param> 
+        void SetMainColor(Color color);
     }
 }

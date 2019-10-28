@@ -11,6 +11,11 @@ namespace WindowsFormsAirplane
         /// </summary>   
         MultiLevelParking parking;
 
+        /// <summary>
+        /// Форма для добавления
+        /// </summary>       
+        FormAirplaneConfig form;
+
         /// <summary> 
         /// Количество уровней-парковок  
         /// </summary>  
@@ -42,55 +47,6 @@ namespace WindowsFormsAirplane
                 Graphics gr = Graphics.FromImage(bmp);
                 parking[listBoxLevels.SelectedIndex].Draw(gr);
                 pictureBoxParking.Image = bmp;
-            }
-        }
-        /// <summary> 
-        /// Обработка нажатия кнопки "Припарковать самолет"    
-        /// </summary>        
-        /// <param name="sender"></param>    
-        /// <param name="e"></param>        
-        private void button_Airplane_Click(object sender, EventArgs e)
-        {
-            if (listBoxLevels.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    var plane = new Airplane(100, 1000, dialog.Color, true, true);
-                    int place = parking[listBoxLevels.SelectedIndex] + plane;
-                    if (place == -1)
-                    {
-                        MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    Draw();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Обработка нажатия кнопки "Припарковать истребитель"    
-        /// </summary>      
-        /// <param name="sender"></param>       
-        /// <param name="e"></param>       
-        private void button_Fighter_Click(object sender, EventArgs e)
-        {
-            if (listBoxLevels.SelectedIndex > -1)
-            {
-                ColorDialog dialog = new ColorDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    ColorDialog dialogDop = new ColorDialog();
-                    if (dialogDop.ShowDialog() == DialogResult.OK)
-                    {
-                        var plane = new Fighter(100, 1000, dialog.Color, dialogDop.Color, true, true, true, true);
-                        int place = parking[listBoxLevels.SelectedIndex] + plane;
-                        if (place == -1)
-                        {
-                            MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        Draw();
-                    }
-                }
             }
         }
 
@@ -129,10 +85,43 @@ namespace WindowsFormsAirplane
         /// </summary>      
         /// <param name="sender"></param>         
         /// <param name="e"></param>      
-       
+
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
-        }        
+        }
+
+        /// <summary>  
+        /// Обработка нажатия кнопки "Добавить самолет"    
+        /// </summary>        
+        /// <param name="sender"></param>       
+        /// <param name="e"></param>        
+
+        private void buttonSetAirplane_Click(object sender, EventArgs e)
+        {
+            form = new FormAirplaneConfig();
+            form.AddEvent(AddPlane);
+            form.Show();
+        }
+
+        /// <summary>      
+        /// Метод добавления самолета
+        /// </summary>       
+        /// <param name="plane"></param>    
+        private void AddPlane(ITransport plane)
+        {
+            if (plane != null && listBoxLevels.SelectedIndex > -1)
+            {
+                int place = parking[listBoxLevels.SelectedIndex] + plane;
+                if (place > -1)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Самолет не удалось поставить");
+                }
+            }
+        }
     }
 }

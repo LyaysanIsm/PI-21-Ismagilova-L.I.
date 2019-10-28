@@ -95,5 +95,13 @@ namespace WindowsFormsAirplane
                 g.DrawEllipse(pen, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
             }
         }
+
+        /// Смена дополнительного цвета  
+        /// </summary>   
+        /// <param name="color"></param>    
+        public void SetDopColor(Color color)
+        {
+            DopColor = color;
+        }
     }
 }

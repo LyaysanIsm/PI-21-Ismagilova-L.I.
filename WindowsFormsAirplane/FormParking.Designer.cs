@@ -31,8 +31,6 @@ namespace WindowsFormsAirplane
         private void InitializeComponent()
         {
             this.pictureBoxParking = new System.Windows.Forms.PictureBox();
-            this.button_Airplane = new System.Windows.Forms.Button();
-            this.button_Fighter = new System.Windows.Forms.Button();
             this.groupBox = new System.Windows.Forms.GroupBox();
             this.pictureBoxTakePlane = new System.Windows.Forms.PictureBox();
             this.buttonTakeAirplane = new System.Windows.Forms.Button();
@@ -41,6 +39,7 @@ namespace WindowsFormsAirplane
             this.heading = new System.Windows.Forms.Label();
             this.listBoxLevels = new System.Windows.Forms.ListBox();
             this.levels = new System.Windows.Forms.Label();
+            this.buttonSetAirplane = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxParking)).BeginInit();
             this.groupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTakePlane)).BeginInit();
@@ -53,26 +52,6 @@ namespace WindowsFormsAirplane
             this.pictureBoxParking.Size = new System.Drawing.Size(689, 449);
             this.pictureBoxParking.TabIndex = 0;
             this.pictureBoxParking.TabStop = false;
-            // 
-            // button_Airplane
-            // 
-            this.button_Airplane.Location = new System.Drawing.Point(696, 83);
-            this.button_Airplane.Name = "button_Airplane";
-            this.button_Airplane.Size = new System.Drawing.Size(92, 53);
-            this.button_Airplane.TabIndex = 1;
-            this.button_Airplane.Text = "Припарковать самолет";
-            this.button_Airplane.UseVisualStyleBackColor = true;
-            this.button_Airplane.Click += new System.EventHandler(this.button_Airplane_Click);
-            // 
-            // button_Fighter
-            // 
-            this.button_Fighter.Location = new System.Drawing.Point(696, 154);
-            this.button_Fighter.Name = "button_Fighter";
-            this.button_Fighter.Size = new System.Drawing.Size(92, 53);
-            this.button_Fighter.TabIndex = 2;
-            this.button_Fighter.Text = "Припарковать истребитель";
-            this.button_Fighter.UseVisualStyleBackColor = true;
-            this.button_Fighter.Click += new System.EventHandler(this.button_Fighter_Click);
             // 
             // groupBox
             // 
@@ -148,16 +127,26 @@ namespace WindowsFormsAirplane
             this.levels.TabIndex = 5;
             this.levels.Text = "Уровни";
             // 
+            // buttonSetAirplane
+            // 
+            this.buttonSetAirplane.Location = new System.Drawing.Point(709, 120);
+            this.buttonSetAirplane.Name = "buttonSetAirplane";
+            this.buttonSetAirplane.Size = new System.Drawing.Size(67, 77);
+            this.buttonSetAirplane.TabIndex = 6;
+            this.buttonSetAirplane.Text = "Добавить самолет";
+            this.buttonSetAirplane.UseVisualStyleBackColor = true;
+            this.buttonSetAirplane.UseWaitCursor = true;
+            this.buttonSetAirplane.Click += new System.EventHandler(this.buttonSetAirplane_Click);
+            // 
             // FormParking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSetAirplane);
             this.Controls.Add(this.levels);
             this.Controls.Add(this.listBoxLevels);
             this.Controls.Add(this.groupBox);
-            this.Controls.Add(this.button_Fighter);
-            this.Controls.Add(this.button_Airplane);
             this.Controls.Add(this.pictureBoxParking);
             this.Name = "FormParking";
             this.Text = "Парковка";
@@ -173,8 +162,6 @@ namespace WindowsFormsAirplane
         #endregion
 
         private System.Windows.Forms.PictureBox pictureBoxParking;
-        private System.Windows.Forms.Button button_Airplane;
-        private System.Windows.Forms.Button button_Fighter;
         private System.Windows.Forms.GroupBox groupBox;
         private System.Windows.Forms.Label heading;
         private System.Windows.Forms.PictureBox pictureBoxTakePlane;
@@ -183,5 +170,6 @@ namespace WindowsFormsAirplane
         private System.Windows.Forms.MaskedTextBox maskedTextBox;
         private System.Windows.Forms.ListBox listBoxLevels;
         private System.Windows.Forms.Label levels;
+        private System.Windows.Forms.Button buttonSetAirplane;
     }
 }
