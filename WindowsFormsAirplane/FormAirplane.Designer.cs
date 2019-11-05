@@ -132,7 +132,6 @@
             this.Text = "Самолет";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirplane)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion

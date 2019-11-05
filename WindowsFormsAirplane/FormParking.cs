@@ -44,6 +44,7 @@ namespace WindowsFormsAirplane
                 pictureBoxParking.Image = bmp;
             }
         }
+
         /// <summary> 
         /// Обработка нажатия кнопки "Припарковать самолет"    
         /// </summary>        
@@ -98,8 +99,7 @@ namespace WindowsFormsAirplane
         /// Обработка нажатия кнопки "Забрать"   
         /// </summary>       
         /// <param name="sender"></param>         
-        /// <param name="e"></param>    
-
+        /// <param name="e"></param>  
         private void buttonTakeAirplane_Click_(object sender, EventArgs e)
         {
             if (listBoxLevels.SelectedIndex > -1)
@@ -129,7 +129,6 @@ namespace WindowsFormsAirplane
         /// </summary>      
         /// <param name="sender"></param>         
         /// <param name="e"></param>      
-       
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
