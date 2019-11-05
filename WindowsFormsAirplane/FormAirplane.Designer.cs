@@ -34,6 +34,7 @@
             this.buttonUp = new System.Windows.Forms.Button();
             this.buttonDown = new System.Windows.Forms.Button();
             this.buttonRight = new System.Windows.Forms.Button();
+            this.buttonF = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirplane)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,15 +45,15 @@
             this.pictureBoxAirplane.Name = "pictureBoxAirplane";
             this.pictureBoxAirplane.Size = new System.Drawing.Size(884, 461);
             this.pictureBoxAirplane.TabIndex = 0;
-            this.pictureBoxAirplane.TabStop = false;           
+            this.pictureBoxAirplane.TabStop = false;                   
             // 
             // buttonCreate
             // 
-            this.buttonCreate.Location = new System.Drawing.Point(0, 0);
+            this.buttonCreate.Location = new System.Drawing.Point(12, 0);
             this.buttonCreate.Name = "buttonCreate";
-            this.buttonCreate.Size = new System.Drawing.Size(75, 23);
+            this.buttonCreate.Size = new System.Drawing.Size(81, 23);
             this.buttonCreate.TabIndex = 1;
-            this.buttonCreate.Text = "Создать";
+            this.buttonCreate.Text = "Истребитель";
             this.buttonCreate.UseVisualStyleBackColor = true;
             this.buttonCreate.Click += new System.EventHandler(this.buttonCreate_Click);
             // 
@@ -104,11 +105,22 @@
             this.buttonRight.UseVisualStyleBackColor = true;
             this.buttonRight.Click += new System.EventHandler(this.buttonMove_Click);
             // 
+            // buttonF
+            // 
+            this.buttonF.Location = new System.Drawing.Point(125, 0);
+            this.buttonF.Name = "buttonF";
+            this.buttonF.Size = new System.Drawing.Size(84, 23);
+            this.buttonF.TabIndex = 6;
+            this.buttonF.Text = "Самолет";
+            this.buttonF.UseVisualStyleBackColor = true;
+            this.buttonF.Click += new System.EventHandler(this.buttonF_Click);
+            // 
             // FormAirplane
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 461);
+            this.Controls.Add(this.buttonF);
             this.Controls.Add(this.buttonRight);
             this.Controls.Add(this.buttonDown);
             this.Controls.Add(this.buttonUp);
@@ -120,7 +132,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirplane)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -130,6 +141,7 @@
         private System.Windows.Forms.Button buttonUp;
         private System.Windows.Forms.Button buttonDown;
         private System.Windows.Forms.Button buttonRight;
+        private System.Windows.Forms.Button buttonF;
     }
 }
 
