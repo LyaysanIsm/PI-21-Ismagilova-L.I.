@@ -73,8 +73,7 @@ namespace WindowsFormsAirplane
         /// Обработка нажатия кнопки "Забрать"   
         /// </summary>       
         /// <param name="sender"></param>         
-        /// <param name="e"></param>    
-
+        /// <param name="e"></param>
         private void buttonTakeAirplane_Click_(object sender, EventArgs e)
         {
             if (maskedTextBox.Text != "")
