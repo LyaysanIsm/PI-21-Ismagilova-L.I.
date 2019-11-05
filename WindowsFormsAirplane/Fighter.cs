@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 
-
 namespace WindowsFormsAirplane
 {
     public class Fighter : Airplane
@@ -20,6 +19,9 @@ namespace WindowsFormsAirplane
         /// </summary> 
         public bool Bullets { private set; get; }
 
+        /// <summary> 
+        /// Бомбы       
+        /// </summary>
         public bool Bombs { private set; get; }
 
         /// <summary> 
@@ -40,7 +42,6 @@ namespace WindowsFormsAirplane
          base(maxSpeed, weight, mainColor, cabin, keel)
 
         {
-
             DopColor = dopColor;
             Keel = keel;
             Bullets = bullets;
@@ -60,29 +61,32 @@ namespace WindowsFormsAirplane
 
             if (Bombs)
             {
-                g.DrawLine(pen, _startPosX + 95, _startPosY - 20, _startPosX + 95, _startPosY);
-                g.DrawLine(pen, _startPosX + 105, _startPosY - 20, _startPosX + 105, _startPosY);
+                g.DrawLine(pen, _startPosX + 94 / 3, _startPosY - 20 / 3, _startPosX + 94 / 3, _startPosY + 100 / 3);
+                g.DrawLine(pen, _startPosX + 104 / 3, _startPosY - 20 / 3, _startPosX + 104 / 3, _startPosY + 100 / 3);
             }
 
             base.DrawAirplane(g);
 
             if (Bullets)
             {
-                g.FillEllipse(bul, _startPosX + 48, _startPosY + 40, 5, 25);
-                g.FillEllipse(bul, _startPosX + 59, _startPosY + 35, 5, 25);
-                g.FillEllipse(bul, _startPosX + 70, _startPosY + 32, 5, 25);
+                g.FillEllipse(bul, _startPosX + 15 / 2, _startPosY + 40 / 2, 5 / 2, 25 / 2);
+                g.FillEllipse(bul, _startPosX + 111 / 2, _startPosY + 40 / 2, 5 / 2, 25 / 2);
 
-                g.FillEllipse(bul, _startPosX + 145, _startPosY + 40, 5, 25);
-                g.FillEllipse(bul, _startPosX + 134, _startPosY + 35, 5, 25);
-                g.FillEllipse(bul, _startPosX + 122, _startPosY + 32, 5, 25);
+                g.FillEllipse(bul, _startPosX + 29 / 2, _startPosY + 35 / 2, 5 / 2, 25 / 2);
+                g.FillEllipse(bul, _startPosX + 40 / 2, _startPosY + 32 / 3, 5 / 2, 25 / 2);
+
+
+                g.FillEllipse(bul, _startPosX + 99 / 2, _startPosY + 35 / 2, 5 / 2, 25 / 2);
+                g.FillEllipse(bul, _startPosX + 87 / 2, _startPosY + 32 / 3, 5 / 2, 25 / 2);
 
             }
 
             if (Cabin)
             {
                 Brush win = new SolidBrush(Color.Yellow);
-                g.FillRectangle(win, _startPosX + 87, _startPosY + 26, 25, 15);
-                g.DrawRectangle(pen, _startPosX + 87, _startPosY + 26, 25, 15);
+                g.FillRectangle(win, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
+                g.DrawRectangle(pen, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
+
             }
 
 
@@ -90,8 +94,8 @@ namespace WindowsFormsAirplane
             {
                 Brush kl = new SolidBrush(Color.Black);
 
-                g.FillEllipse(kl, _startPosX + 98, _startPosY + 120, 5, 30);
-                g.DrawEllipse(pen, _startPosX + 98, _startPosY + 120, 5, 30);
+                g.FillEllipse(kl, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
+                g.DrawEllipse(pen, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
             }
         }
     }
