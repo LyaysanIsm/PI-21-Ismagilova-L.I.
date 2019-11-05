@@ -93,9 +93,6 @@ namespace WindowsFormsAirplane
                 g.FillEllipse(kl, _startPosX + 98, _startPosY + 120, 5, 30);
                 g.DrawEllipse(pen, _startPosX + 98, _startPosY + 120, 5, 30);
             }
-           
-
-
         }
     }
 }
