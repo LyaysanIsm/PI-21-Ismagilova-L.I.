@@ -46,7 +46,6 @@
             this.pictureBoxAirplane.Size = new System.Drawing.Size(884, 461);
             this.pictureBoxAirplane.TabIndex = 0;
             this.pictureBoxAirplane.TabStop = false;
-            this.pictureBoxAirplane.Click += new System.EventHandler(this.pictureBoxAirplane_Click);
             // 
             // buttonCreate
             // 
@@ -131,7 +130,6 @@
             this.Name = "FormAirplane";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Самолет";
-            this.Load += new System.EventHandler(this.FormAirplane_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAirplane)).EndInit();
             this.ResumeLayout(false);
 
