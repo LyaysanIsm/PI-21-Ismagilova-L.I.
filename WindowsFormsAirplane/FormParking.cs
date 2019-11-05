@@ -6,17 +6,27 @@ namespace WindowsFormsAirplane
 {
     public partial class FormParking : Form
     {
+        /// <summary> 
+        /// Объект от класса многоуровневой парковки      
+        /// </summary>   
+        MultiLevelParking parking;
 
         /// <summary> 
-        /// Объект от класса-парковки
+        /// Количество уровней-парковок  
         /// </summary>  
-        Parking<ITransport> parking;
+        private const int countLevel = 5;
+
 
         public FormParking()
         {
             InitializeComponent();
-            parking = new Parking<ITransport>(20, pictureBoxParking.Width, pictureBoxParking.Height);
-            Draw();
+            parking = new MultiLevelParking(countLevel, pictureBoxParking.Width, pictureBoxParking.Height);
+            //заполнение listBox  
+            for (int i = 0; i < countLevel; i++)
+            {
+                listBoxLevels.Items.Add("Уровень " + (i + 1));
+            }
+            listBoxLevels.SelectedIndex = 0;
         }
 
         /// <summary> 
@@ -24,11 +34,15 @@ namespace WindowsFormsAirplane
         /// </summary>        
         private void Draw()
         {
-
-            Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
-            Graphics gr = Graphics.FromImage(bmp);
-            parking.Draw(gr);
-            pictureBoxParking.Image = bmp;
+            if (listBoxLevels.SelectedIndex > -1)
+            {
+                //если выбран один из пуктов в listBox (при старте программы ни один пункт не будет выбран 
+                //и может возникнуть ошибка, если мы попытаемся обратиться к элементу listBox)   
+                Bitmap bmp = new Bitmap(pictureBoxParking.Width, pictureBoxParking.Height);
+                Graphics gr = Graphics.FromImage(bmp);
+                parking[listBoxLevels.SelectedIndex].Draw(gr);
+                pictureBoxParking.Image = bmp;
+            }
         }
 
         /// <summary> 
@@ -38,15 +52,20 @@ namespace WindowsFormsAirplane
         /// <param name="e"></param>        
         private void button_Airplane_Click(object sender, EventArgs e)
         {
-
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                var plane = new Airplane(100, 1000, dialog.Color, true, true);
-                int place = parking + plane;
-                Draw();
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    var plane = new Airplane(100, 1000, dialog.Color, true, true);
+                    int place = parking[listBoxLevels.SelectedIndex] + plane;
+                    if (place == -1)
+                    {
+                        MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    Draw();
+                }
             }
-
         }
 
         /// <summary>
@@ -56,15 +75,22 @@ namespace WindowsFormsAirplane
         /// <param name="e"></param>       
         private void button_Fighter_Click(object sender, EventArgs e)
         {
-            ColorDialog dialog = new ColorDialog();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                ColorDialog dialogDop = new ColorDialog();
-                if (dialogDop.ShowDialog() == DialogResult.OK)
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
                 {
-                    var plane = new Fighter(100, 1000, dialog.Color, dialogDop.Color, true, true, true, true);
-                    int place = parking + plane;
-                    Draw();
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
+                    {
+                        var plane = new Fighter(100, 1000, dialog.Color, dialogDop.Color, true, true, true, true);
+                        int place = parking[listBoxLevels.SelectedIndex] + plane;
+                        if (place == -1)
+                        {
+                            MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        Draw();
+                    }
                 }
             }
         }
@@ -73,27 +99,39 @@ namespace WindowsFormsAirplane
         /// Обработка нажатия кнопки "Забрать"   
         /// </summary>       
         /// <param name="sender"></param>         
-        /// <param name="e"></param>
+        /// <param name="e"></param>  
         private void buttonTakeAirplane_Click_(object sender, EventArgs e)
         {
-            if (maskedTextBox.Text != "")
+            if (listBoxLevels.SelectedIndex > -1)
             {
-                var plane = parking - Convert.ToInt32(maskedTextBox.Text);
-                if (plane != null)
+                if (maskedTextBox.Text != "")
                 {
-                    Bitmap bmp = new Bitmap(pictureBoxTakePlane.Width, pictureBoxTakePlane.Height);
-                    Graphics gr = Graphics.FromImage(bmp);
-                    plane.SetPosition(5, 5, pictureBoxTakePlane.Width, pictureBoxTakePlane.Height);
-                    plane.DrawAirplane(gr);
-                    pictureBoxTakePlane.Image = bmp;
+                    var plane = parking[listBoxLevels.SelectedIndex] - Convert.ToInt32(maskedTextBox.Text);
+                    if (plane != null)
+                    {
+                        Bitmap bmp = new Bitmap(pictureBoxTakePlane.Width, pictureBoxTakePlane.Height);
+                        Graphics gr = Graphics.FromImage(bmp);
+                        plane.SetPosition(5, 5, pictureBoxTakePlane.Width, pictureBoxTakePlane.Height);
+                        plane.DrawAirplane(gr);
+                        pictureBoxTakePlane.Image = bmp;
+                    }
+                    else
+                    {
+                        Bitmap bmp = new Bitmap(pictureBoxTakePlane.Width, pictureBoxTakePlane.Height);
+                        pictureBoxTakePlane.Image = bmp;
+                    }
+                    Draw();
                 }
-                else
-                {
-                    Bitmap bmp = new Bitmap(pictureBoxTakePlane.Width, pictureBoxTakePlane.Height);
-                    pictureBoxTakePlane.Image = bmp;
-                }
-                Draw();
             }
         }
+        /// <summary>  
+        /// Метод обработки выбора элемента на listBoxLevels   
+        /// </summary>      
+        /// <param name="sender"></param>         
+        /// <param name="e"></param>      
+        private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            Draw();
+        }        
     }
 }

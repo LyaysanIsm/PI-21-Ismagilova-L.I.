@@ -1,6 +1,5 @@
 ﻿using System.Drawing;
 
-
 namespace WindowsFormsAirplane
 {
     public class Airplane : Vehicle
@@ -71,6 +70,7 @@ namespace WindowsFormsAirplane
                     break;
             }
         }
+
         public override void DrawAirplane(Graphics g)
         {
 
@@ -93,6 +93,7 @@ namespace WindowsFormsAirplane
                 g.FillRectangle(win, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
                 g.DrawRectangle(pen, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
             }
+
             if (Keel)
             {
                 Brush kl = new SolidBrush(Color.Black);

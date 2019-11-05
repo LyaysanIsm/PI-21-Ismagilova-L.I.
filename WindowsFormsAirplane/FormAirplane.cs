@@ -72,6 +72,6 @@ namespace WindowsFormsAirplane
                     break;
             }
             Draw();
-        }        
+        }
     }
 }
