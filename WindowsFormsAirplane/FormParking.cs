@@ -51,6 +51,56 @@ namespace WindowsFormsAirplane
         }
 
         /// <summary> 
+        /// Обработка нажатия кнопки "Припарковать самолет"    
+        /// </summary>        
+        /// <param name="sender"></param>    
+        /// <param name="e"></param>        
+        private void button_Airplane_Click(object sender, EventArgs e)
+        {
+            if (listBoxLevels.SelectedIndex > -1)
+            {
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    var plane = new Airplane(100, 1000, dialog.Color, true, true);
+                    int place = parking[listBoxLevels.SelectedIndex] + plane;
+                    if (place == -1)
+                    {
+                        MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    Draw();
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обработка нажатия кнопки "Припарковать истребитель"    
+        /// </summary>      
+        /// <param name="sender"></param>       
+        /// <param name="e"></param>       
+        private void button_Fighter_Click(object sender, EventArgs e)
+        {
+            if (listBoxLevels.SelectedIndex > -1)
+            {
+                ColorDialog dialog = new ColorDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    ColorDialog dialogDop = new ColorDialog();
+                    if (dialogDop.ShowDialog() == DialogResult.OK)
+                    {
+                        var plane = new Fighter(100, 1000, dialog.Color, dialogDop.Color, true, true, true, true);
+                        int place = parking[listBoxLevels.SelectedIndex] + plane;
+                        if (place == -1)
+                        {
+                            MessageBox.Show("Нет свободных мест", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        Draw();
+                    }
+                }
+            }
+        }
+
+        /// <summary> 
         /// Обработка нажатия кнопки "Забрать"   
         /// </summary>       
         /// <param name="sender"></param>         
@@ -84,7 +134,6 @@ namespace WindowsFormsAirplane
         /// </summary>      
         /// <param name="sender"></param>         
         /// <param name="e"></param>      
-
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
