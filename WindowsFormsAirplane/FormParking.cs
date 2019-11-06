@@ -11,6 +11,11 @@ namespace WindowsFormsAirplane
         /// </summary>   
         MultiLevelParking parking;
 
+        /// <summary>
+        /// Форма для добавления
+        /// </summary>       
+        FormAirplaneConfig form;
+
         /// <summary> 
         /// Количество уровней-парковок  
         /// </summary>  
@@ -132,6 +137,39 @@ namespace WindowsFormsAirplane
         private void listBoxLevels_SelectedIndexChanged(object sender, EventArgs e)
         {
             Draw();
-        }        
+        }
+
+        /// <summary>  
+        /// Обработка нажатия кнопки "Добавить самолет"    
+        /// </summary>        
+        /// <param name="sender"></param>       
+        /// <param name="e"></param>        
+
+        private void buttonSetAirplane_Click(object sender, EventArgs e)
+        {
+            form = new FormAirplaneConfig();
+            form.AddEvent(AddPlane);
+            form.Show();
+        }
+
+        /// <summary>      
+        /// Метод добавления самолета
+        /// </summary>       
+        /// <param name="plane"></param>    
+        private void AddPlane(ITransport plane)
+        {
+            if (plane != null && listBoxLevels.SelectedIndex > -1)
+            {
+                int place = parking[listBoxLevels.SelectedIndex] + plane;
+                if (place > -1)
+                {
+                    Draw();
+                }
+                else
+                {
+                    MessageBox.Show("Самолет не удалось поставить");
+                }
+            }
+        }
     }
 }

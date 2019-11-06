@@ -45,7 +45,6 @@
             this.pictureBoxAirplane.Name = "pictureBoxAirplane";
             this.pictureBoxAirplane.Size = new System.Drawing.Size(884, 461);
             this.pictureBoxAirplane.TabIndex = 0;
-            this.pictureBoxAirplane.TabStop = false;
             // 
             // buttonCreate
             // 
