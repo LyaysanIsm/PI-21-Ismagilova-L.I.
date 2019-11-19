@@ -1,7 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text;
 
 namespace WindowsFormsAirplane
 {
+    /// <summary> 
+    /// Класс-хранилище парковок 
+    /// </summary> 
     class MultiLevelParking
     {
         /// <summary>        
@@ -13,6 +19,16 @@ namespace WindowsFormsAirplane
         /// Сколько мест на каждом уровне    
         /// </summary> 
         private const int countPlaces = 20;
+
+        /// <summary> 
+        /// Ширина окна отрисовки 
+        /// </summary>        
+        private int pictureWidth;
+
+        /// <summary> 
+        /// Высота окна отрисовки    
+        /// </summary>        
+        private int pictureHeight;
 
         /// <summary>       
         ///  Конструктор    
@@ -45,5 +61,102 @@ namespace WindowsFormsAirplane
                 return null;
             }
         }
+
+        /// <summary> 
+        /// Сохранение информации по самолетам на парковках в файл 
+        /// </summary>         
+        /// <param name="filename">Путь и имя файла</param>   
+        /// <returns></returns>   
+        public bool SaveData(string filename)
+        {
+            if (File.Exists(filename))
+            {
+                File.Delete(filename);
+            }
+            using (StreamWriter sw = new StreamWriter(filename))
+            {
+                sw.WriteLine("CountLeveles:" + parkingStages.Count);
+                foreach (var level in parkingStages)
+                {
+                    sw.WriteLine("Level");
+                    for (int i = 0; i < countPlaces; i++)
+                    {
+                        var plane = level[i];
+                        if (plane != null)
+                        {
+                            if (plane.GetType().Name == "Airplane")
+                            {
+                                sw.Write(i + ":Airplane:");
+                            }
+                            if (plane.GetType().Name == "Fighter")
+                            {
+                                sw.Write(i + ":Fighter:");
+                            }
+                            sw.WriteLine(plane);
+                        }
+                    }
+                }
+                return true;
+            }
+        }
+
+        /// <summary>         
+        /// Загрузка информации по самолетам на парковках из файла        
+        /// </summary>       
+        /// <param name="filename"></param>   
+        /// <returns></returns> 
+        public bool LoadData(string filename)
+        {
+            if (!File.Exists(filename))
+            {
+                return false;
+            }
+            string buffer = "";
+            using (StreamReader sr = new StreamReader(filename))
+            {
+                if ((buffer = sr.ReadLine()).Contains("CountLeveles"))
+                {
+                    int count = Convert.ToInt32(buffer.Split(':')[1]);
+                    if (parkingStages != null)
+                    {
+                        parkingStages.Clear();
+                    }
+                    parkingStages = new List<Parking<ITransport>>(count);
+                }
+                else
+                {
+                    return false;
+                }
+                int counter = -1;
+                ITransport car = null;
+                while ((buffer = sr.ReadLine()) != null)
+                {
+                    if (buffer == "Level")
+                    {
+                        counter++;
+                        parkingStages.Add(new Parking<ITransport>(countPlaces, pictureWidth, pictureHeight));
+                        continue;
+                    }
+                    if (string.IsNullOrEmpty(buffer))
+                    {
+                        continue;
+                    }
+                    if (buffer.Split(':')[1] == "Airplane")
+                    {
+                        Console.WriteLine(buffer.Split(':')[2]);
+                        car = new Airplane(buffer.Split(':')[2]);
+                    }
+                    else if (buffer.Split(':')[1] == "Fighter")
+                    {
+                        car = new Fighter(buffer.Split(':')[2]);
+                    }
+                    parkingStages[counter][Convert.ToInt32(buffer.Split(':')[0])] = car;
+                }
+            }
+            return true;
+        }
     }
 }
+
+
+
