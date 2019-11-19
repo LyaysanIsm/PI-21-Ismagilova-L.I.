@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace WindowsFormsAirplane
 {
@@ -14,17 +15,16 @@ namespace WindowsFormsAirplane
         /// </summary>         
         private const int planeHeight = 50;
 
-        public bool Cabin { private set; get; }
+        public bool Cabin { protected set; get; }
 
-        public bool Keel { private set; get; }
+        public bool Keel { protected set; get; }
 
         /// <summary>         
         /// Конструктор        
         /// </summary>         
         /// <param name="maxSpeed">Максимальная скорость</param>         
         /// <param name="weight">Вес самолета</param>         
-        /// <param name="mainColor">Основной цвет кузова</param>    
-
+        /// <param name="mainColor">Основной цвет кузова</param>  
         public Airplane(int maxSpeed, float weight, Color mainColor, bool cabin, bool keel)
         {
             MaxSpeed = maxSpeed;
@@ -32,6 +32,23 @@ namespace WindowsFormsAirplane
             MainColor = mainColor;
             Cabin = cabin;
             Keel = keel;
+        }
+
+        /// <summary>
+        /// Конструктор 
+        /// </summary>   
+        /// <param name="info">Информация по объекту</param>        
+        public Airplane(string info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 5)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                Cabin = Convert.ToBoolean(strs[3]);
+                Keel = Convert.ToBoolean(strs[4]);
+            }
         }
 
         public override void MoveTransport(Direction direction)
@@ -101,6 +118,11 @@ namespace WindowsFormsAirplane
                 g.FillEllipse(kl, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
                 g.DrawEllipse(pen, _startPosX + 98 / 3, _startPosY + 120 / 3, 5 / 3, 30 / 3);
             }
+        }
+
+        public override string ToString()
+        {
+            return MaxSpeed + ";" + Weight + ";" + MainColor.Name + ";" + Cabin + ";" + Keel;
         }
     }
 }

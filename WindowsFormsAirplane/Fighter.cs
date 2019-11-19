@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 
 namespace WindowsFormsAirplane
 {
@@ -10,11 +11,6 @@ namespace WindowsFormsAirplane
         public Color DopColor { private set; get; }
 
         /// <summary> 
-        /// Киль        
-        /// </summary> 
-        public new bool Keel { private set; get; }
-
-        /// <summary> 
         /// Пули        
         /// </summary> 
         public bool Bullets { private set; get; }
@@ -23,11 +19,6 @@ namespace WindowsFormsAirplane
         /// Бомбы       
         /// </summary>
         public bool Bombs { private set; get; }
-
-        /// <summary> 
-        /// Кабина        
-        /// </summary> 
-        public new bool Cabin { private set; get; }
 
         /// <summary>         
         /// Конструктор        
@@ -41,11 +32,26 @@ namespace WindowsFormsAirplane
 
         {
             DopColor = dopColor;
-            Keel = keel;
             Bullets = bullets;
-            Cabin = cabin;
             Bombs = bombs;
         }
+
+        public Fighter(string info) : base(info)
+        {
+            string[] strs = info.Split(';');
+            if (strs.Length == 8)
+            {
+                MaxSpeed = Convert.ToInt32(strs[0]);
+                Weight = Convert.ToInt32(strs[1]);
+                MainColor = Color.FromName(strs[2]);
+                Cabin = Convert.ToBoolean(strs[3]);
+                Keel = Convert.ToBoolean(strs[4]);
+                DopColor = Color.FromName(strs[5]);
+                Bullets = Convert.ToBoolean(strs[6]);
+                Bombs = Convert.ToBoolean(strs[7]);
+            }
+        }
+
         /// <summary>         
         /// Отрисовка самолета      
         /// </summary>         
@@ -76,7 +82,6 @@ namespace WindowsFormsAirplane
 
                 g.FillEllipse(bul, _startPosX + 99 / 2, _startPosY + 35 / 2, 5 / 2, 25 / 2);
                 g.FillEllipse(bul, _startPosX + 87 / 2, _startPosY + 32 / 3, 5 / 2, 25 / 2);
-
             }
 
             if (Cabin)
@@ -84,7 +89,6 @@ namespace WindowsFormsAirplane
                 Brush win = new SolidBrush(Color.Yellow);
                 g.FillRectangle(win, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
                 g.DrawRectangle(pen, _startPosX + 87 / 3, _startPosY + 26 / 3, 25 / 3, 15 / 3);
-
             }
 
             if (Keel)
@@ -102,6 +106,11 @@ namespace WindowsFormsAirplane
         public void SetDopColor(Color color)
         {
             DopColor = color;
+        }
+
+        public override string ToString()
+        {
+            return base.ToString() + ";" + DopColor.Name + ";" + Bullets + ";" + Bombs;
         }
     }
 }
