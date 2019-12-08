@@ -95,6 +95,7 @@ namespace WindowsFormsAirplane
                 p._places.Remove(index);
                 return plane;
             }
+            return null;
             throw new ParkingNotFoundException(index);
         }
 
@@ -157,7 +158,7 @@ namespace WindowsFormsAirplane
                 {
                     return _places[ind];
                 }
-                throw new ParkingNotFoundException(ind);
+                return null;
             }
 
             set

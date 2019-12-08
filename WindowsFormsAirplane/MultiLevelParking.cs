@@ -18,7 +18,7 @@ namespace WindowsFormsAirplane
         /// <summary>    
         /// Сколько мест на каждом уровне    
         /// </summary> 
-        private const int countPlaces = 20;
+        private const int countPlaces = 15;
 
         /// <summary> 
         /// Ширина окна отрисовки 
