@@ -79,30 +79,25 @@ namespace WindowsFormsAirplane
                 foreach (var level in parkingStages)
                 {
                     sw.WriteLine("Level");
-                    for (int i = 0; i < countPlaces; i++)
+                    foreach (ITransport plane in level)
                     {
-                        try
+                        if (plane != null)
                         {
-                            var plane = level[i];
-
-                            if (plane != null)
+                            if (plane.GetType().Name == "Airplane")
                             {
-                                if (plane.GetType().Name == "Airplane")
-                                {
-                                    sw.Write(i + ":Airplane:");
-                                }
-                                if (plane.GetType().Name == "Fighter")
-                                {
-                                    sw.Write(i + ":Fighter:");
-                                }
-                                sw.WriteLine(plane);
+                                sw.WriteLine(level.GetKey + ":Airplane:");
                             }
+                            if (plane.GetType().Name == "Fighter")
+                            {
+                                sw.WriteLine(level.GetKey + ":Fighter:");
+                            }
+                            sw.WriteLine(plane);
                         }
-                        finally { }
                     }
                 }
             }
         }
+
 
         /// <summary>         
         /// Загрузка информации по самолетам на парковках из файла        
@@ -159,8 +154,16 @@ namespace WindowsFormsAirplane
                 }
             }
         }
+        /// <summary>    
+        /// Сортировка уровней     
+        /// </summary>       
+        public void Sort()
+        {
+            parkingStages.Sort();
+        }
     }
 }
+
 
 
 

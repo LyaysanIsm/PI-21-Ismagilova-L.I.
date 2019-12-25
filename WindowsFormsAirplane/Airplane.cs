@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace WindowsFormsAirplane
 {
-    public class Airplane : Vehicle
+    public class Airplane : Vehicle, IComparable<Airplane>, IEquatable<Airplane>
     {
         /// <summary>         
         /// Ширина отрисовки самолета       
@@ -123,6 +123,106 @@ namespace WindowsFormsAirplane
         public override string ToString()
         {
             return MaxSpeed + ";" + Weight + ";" + MainColor.Name + ";" + Cabin + ";" + Keel;
+        }
+
+        /// <summary>  
+        /// Метод интерфейса IComparable для класса Airplane      
+        /// </summary>      
+        /// <param name="other"></param>     
+        /// <returns></returns>        
+        public int CompareTo(Airplane other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return MaxSpeed.CompareTo(other.MaxSpeed);
+            }
+            if (Weight != other.Weight)
+            {
+                return Weight.CompareTo(other.Weight);
+            }
+            if (MainColor != other.MainColor)
+            {
+                MainColor.Name.CompareTo(other.MainColor.Name);
+            }
+            if (Cabin != other.Cabin)
+            {
+                return Cabin.CompareTo(other.Cabin);
+            }
+            if (Keel != other.Keel)
+            {
+                return Keel.CompareTo(other.Keel);
+            }
+            return 0;
+        }
+
+        /// <summary>     
+        /// Метод интерфейса IEquatable для класса Airplane     
+        /// </summary>      
+        /// <param name="other"></param>      
+        /// <returns></returns>      
+        public bool Equals(Airplane other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            if (GetType().Name != other.GetType().Name)
+            {
+                return false;
+            }
+            if (MaxSpeed != other.MaxSpeed)
+            {
+                return false;
+            }
+            if (Weight != other.Weight)
+            {
+                return false;
+            }
+            if (MainColor != other.MainColor)
+            {
+                return false;
+            }
+            if (Cabin != other.Cabin)
+            {
+                return false;
+            }
+            if (Keel != other.Keel)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        /// <summary>  
+        /// Перегрузка метода от object    
+        /// </summary>     
+        /// <param name="obj"></param> 
+        //// <returns></returns>    
+        public override bool Equals(Object obj)
+        {
+            if (obj == null) { return false; }
+
+            if (!(obj is Airplane planeObj))
+            {
+                return false;
+            }
+            else
+            {
+                return Equals(planeObj);
+            }
+        }
+
+        /// <summary>     
+        /// Перегрузка метода от object        
+        /// </summary>  
+        /// <returns></returns>   
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
         }
     }
 }

@@ -137,6 +137,11 @@ namespace WindowsFormsAirplane
                     logger.Error("Переполнение данным объектом");
                     MessageBox.Show(ex.Message, "Переполнение", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+                catch (ParkingAlreadyHaveException ex)
+                {
+                    MessageBox.Show(ex.Message, "Дублирование", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    logger.Error("Дублирование");
+                }
                 catch (Exception ex)
                 {
                     logger.Error("Неизвестная ошибка");
@@ -197,6 +202,18 @@ namespace WindowsFormsAirplane
                 }
                 Draw();
             }
+        }
+
+        /// <summary>     
+        /// Обработка нажатия кнопки "Сортировка"         
+        /// </summary>     
+        /// <param name="sender"></param>      
+        /// <param name="e"></param>   
+        private void button_Sort_Click(object sender, EventArgs e)
+        {
+            parking.Sort();
+            Draw();
+            logger.Info("Сортировка уровней");
         }
     }
 }
